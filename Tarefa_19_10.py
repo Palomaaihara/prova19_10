@@ -22,8 +22,7 @@ for pessoa in pessoas:
                 if linha == nome:
 
 #DELETAR PESSOA
-def deleter_pessoa(pessoas_csv, pessoas):
-    pesquisa = input("Digite o nome que deseja excluir: ")
+def deletar_pessoa(pessoas_csv, pessoas):
     pessoas_para_remover = []
 
     # Encontra o índice das pessoas a serem removidas na lista
@@ -89,7 +88,8 @@ while True:
 
             elif op == "4":
                 print("----DELETAR PESSOA----")
-
+                pesquisa = input("Digite o nome que deseja excluir: ")
+                deletar_pessoa()
 
 
             elif op == "5":
