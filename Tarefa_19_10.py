@@ -3,11 +3,15 @@ import csv
 
 
 #CADASTRAR PESSOAS
+
 with open('pessoas.csv', mode='w', newline='') as pessoas_csv:
         writer = csv.writer(pessoas_csv)
         writer.writerow(["ID","Nome", "e-Mail", "Telefone"])
         for pessoa in pessoas:
             writer.writerow([pessoa,pessoa['NOME'], pessoa['EMAIL'], pessoa['TELEFONE']])
+
+
+#cadastra_livro
 
 def cadastrar_livro(livros,titulo,autor,editora):
     livro = {
@@ -84,6 +88,8 @@ def deletar_pessoa(pessoas_csv, pessoas):
             writer.writerows(pessoas_no_arquivo)  # Escreve as pessoas restantes
 
         print("Pessoa(s) removida(s) com sucesso!")
+
+#cadastro
 
 #menu
 while True:
