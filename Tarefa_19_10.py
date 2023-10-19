@@ -3,7 +3,7 @@ import csv
 
 
 #CADASTRAR PESSOAS
-def cadastrar_pessoa(Pessoas,nome,email,telefone):
+def cadastrar_pessoa(pessoas,nome,email,telefone):
     pessoa = {
         'NOME': nome,
         'EMAIL': email,
@@ -40,11 +40,11 @@ telefone = int(input("Ditegite o telefone: "))
 
 #IMPRIMIR PESSOAS
 def imp_pessoa(pessoas):
-    for i,cad_pessoa in enumerate(pessoas):
+    for i,pessoa in enumerate(pessoas):
 	    print("Número de cadastro da pessoa:",i)
-        print("NOME:", cad_pessoa['NOME'])
-        print("NUMERO:", cad_pessoa['NUMERO'])
-        print("EMAIL:", cad_pessoa['EMAIL'])
+        print("Nome:", pessoa['NOME'])
+        print("Email:", pessoa['EMAIL'])
+        print("Telefone:", pessoa['TELEFONE'])
     
 with open('pessoas.csv', 'r', newline='') as pessoas_csv:
         linhas = csv.reader(pessoas_csv)
@@ -132,7 +132,10 @@ while True:
 
             if op == "1":
                 print("----CADASTRAR PESSOAS----")
-
+                nome = str(input("Digite o nome da pessoa: "))
+	    	    email = str(input("Digite o e-mail da pessoa: "))
+	    	    telefone = str(input("Digitebo o telefone da pessoa: "))
+                cadastrar_pessoa(Pessoas,nome,email,telefone)
 
             elif op == "2":
                 print("----IMPRIMIR PESSOAS----")
@@ -177,7 +180,10 @@ while True:
 
             if op == "1":
                 print("----CADASTRAR LIVRO ----")
-
+                titulo = str(input("Digite o título do livro: "))
+	    	    autor = str(input("Digite o nome do autor do livro: "))
+	    	    editora = str(input("Digitebo nome da editora do livro: "))
+                cadastrar_livro(livros,titulo,autor,editora)
 
 
             elif op == "2":
