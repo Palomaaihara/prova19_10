@@ -117,6 +117,29 @@ def deletar_emprestimo(emprestimos_csv, emprestimo):
             writer.writerows(emprestimo_no_arquivo) 
 
         print("Emprestimo removido com sucesso!")
+
+#IMPRIMIR_REGISTRO
+
+def imp_registro(emprestimos):
+	for i,emprestimo in enumerate(emprestimos):
+		print("Número do registro:",i)
+		print("NOME:",emprestimo['PESSOA'])
+		print("LIVRO:",emprestimo['LIVRO'])
+		print("DATA DO EMPRESTIMO:",emprestimo['DATA_EMP'])
+		print("DATA DE DEVOLUCAO",emprestimo['DATA_ENTREGA'])
+          
+#IMPRIMIR_ATRASADOS
+
+def imp_atrasados(emprestimos,data_entrega,pessoa,livro):
+	data = datetime.datetime.now()
+	for i,emprestimo in enumerate(emprestimos):
+		if data_entrega< data:
+			print("Número do registro:",i)
+			print("NOME:",emprestimo['PESSOA'])
+			print("LIVRO:",emprestimo['LIVRO'])
+			print("DATA DO EMPRESTIMO:",emprestimo['DATA_EMP'])
+			print("DATA DE DEVOLUCAO:",emprestimo['DATA_ENTREGA'])
+
 #menu
 while True:
     print("------BIBLIOTECA------")
