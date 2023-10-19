@@ -9,6 +9,9 @@ with open('pessoas.csv', mode='w', newline='') as pessoas_csv:
         for pessoa in pessoas:
             writer.writerow([pessoa,pessoa['NOME'], pessoa['EMAIL'], pessoa['TELEFONE']])
 
+
+#cadastra_livro
+
 def cadastrar_livro(livros,titulo,autor,editora):
     livro = {
         'TITULO': titulo,
