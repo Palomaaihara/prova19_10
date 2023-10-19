@@ -32,12 +32,16 @@ telefone = int(input("Ditegite o telefone: "))
 
 #IMPRIMIR PESSOAS
 def imp_pessoa(pessoas):
-	for i,cad_pessoa in enumerate(pessoas):
-		print("Número de cadastro da pessoa:",i)
+    for i,cad_pessoa in enumerate(pessoas):
+	    print("Número de cadastro da pessoa:",i)
         print("NOME:", cad_pessoa['NOME'])
         print("NUMERO:", cad_pessoa['NUMERO'])
         print("EMAIL:", cad_pessoa['EMAIL'])
-
+    
+with open('pessoas.csv', 'r', newline='') as pessoas_csv:
+        linhas = csv.reader(pessoas_csv)
+        for linha in linhas:
+            print(linha[0], linha[1], linha[2])
 #ATUALIZAR PESSOA
 
 id = input("Digite o nome: ")
@@ -128,7 +132,7 @@ while True:
 
             elif op =="3":
                 print("----ATUALIZAR PESSOA----")
-
+ 		imp_pessoa(pessoas)
 
 
             elif op == "4":
