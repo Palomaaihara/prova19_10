@@ -3,6 +3,14 @@ import csv
 
 
 #CADASTRAR PESSOAS
+def cadastrar_pessoa(Pessoas,nome,email,telefone):
+    pessoa = {
+        'NOME': nome,
+        'EMAIL': email,
+        "TELEFONE": telefone
+    }
+    pessoas.apppend(pessoa)
+pessoas = []
 with open('pessoas.csv', mode='w', newline='') as pessoas_csv:
         writer = csv.writer(pessoas_csv)
         writer.writerow(["ID","Nome", "e-Mail", "Telefone"])
@@ -109,6 +117,7 @@ while True:
 
             if op == "1":
                 print("----CADASTRAR PESSOAS----")
+
 
             elif op == "2":
                 print("----IMPRIMIR PESSOAS----")
