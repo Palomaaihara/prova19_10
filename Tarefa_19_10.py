@@ -3,7 +3,14 @@ import csv
 
 
 #CADASTRAR PESSOAS
-
+def cadastrar_pessoa(Pessoas,nome,email,telefone):
+    pessoa = {
+        'NOME': nome,
+        'EMAIL': email,
+        "TELEFONE": telefone
+    }
+    pessoas.apppend(pessoa)
+pessoas = []
 with open('pessoas.csv', mode='w', newline='') as pessoas_csv:
         writer = csv.writer(pessoas_csv)
         writer.writerow(["ID","Nome", "e-Mail", "Telefone"])
@@ -88,9 +95,22 @@ def deletar_pessoa(pessoas_csv, pessoas):
             writer.writerows(pessoas_no_arquivo)  # Escreve as pessoas restantes
 
         print("Pessoa(s) removida(s) com sucesso!")
+#DELETAR EMPRESTIMO
+def deleter_registro(emprestimos):
+    pesquisa = input("Digite o nome que deseja excluir: ")
+    emprestimos_para_remover = []
 
-#cadastro
+    for emprestimo in emprestimos:
+        if emprestimo['EMPRESTIMO'] == pesquisa:
+            emprestimos_para_remover.append(emprestimo)
 
+    if not emprestimos_para_remover:
+        print("Nome não encontrado na lista!")
+    else:
+        for emprestimo in emprestimos_para_remover:
+            emprestimos.remove(emprestimo)
+
+        criar_csv() 
 #menu
 while True:
     print("------BIBLIOTECA------")
@@ -116,6 +136,7 @@ while True:
             if op == "1":
                 print("----CADASTRAR PESSOAS----")
 
+
             elif op == "2":
                 print("----IMPRIMIR PESSOAS----")
 
@@ -123,7 +144,7 @@ while True:
 
             elif op =="3":
                 print("----ATUALIZAR PESSOA----")
-
+ 		imp_pessoa(pessoas)
 
 
             elif op == "4":
