@@ -3,14 +3,6 @@ import csv
 
 
 #CADASTRAR PESSOAS
-def cadastrar_pessoa(Pessoas,nome,email,telefone):
-    pessoa = {
-        'NOME': nome,
-        'EMAIL': email,
-        "TELEFONE": telefone
-    }
-    pessoas.apppend(pessoa)
-pessoas = []
 with open('pessoas.csv', mode='w', newline='') as pessoas_csv:
         writer = csv.writer(pessoas_csv)
         writer.writerow(["ID","Nome", "e-Mail", "Telefone"])
@@ -94,34 +86,34 @@ def deletar_pessoa(pessoas_csv, pessoas):
         print("Pessoa(s) removida(s) com sucesso!")
 
 #DELETAR EMPRESTIMO
-def deletar_emprestimo(emprestimo_csv, pessoas):
+def deletar_emprestimo(emprestimos_csv, emprestimo):
     emprestimo_para_remover = []
 
-    # Encontra o índice das pessoas a serem removidas na lista
+    
     for i, emprestimo in enumerate(emprestimos):
-        if emprestimo['NOME'] == pesquisa:
+        if emprestimo['EMPRESTIMO'] == pesquisa:
             emprestimo_para_remover.append(i)
 
     if not emprestimo_para_remover:
-        print("Nome não encontrado na lista!")
+        print("Emprestimo não encontrado na lista!")
     else:
-        # Abre o arquivo CSV para leitura e escrita
-        with open(emprestimo_csv, 'r') as file:
+        
+        with open(emprestimos_csv, 'r') as file:
             reader = csv.DictReader(file)
             emprestimo_no_arquivo = list(reader)
 
-        # Remove as pessoas da lista em memória
+        
         for i in reversed(emprestimo_para_remover):
             emprestimo.pop(i)
 
-        # Abre o arquivo CSV para escrita e escreve as pessoas restantes
-        with open(emprestimo_csv, 'w', newline='') as file:
-            fieldnames = emprestimo_no_arquivo[0].keys()  # Obtém os cabeçalhos do CSV do arquivo
+       
+        with open(emprestimos_csv, 'w', newline='') as file:
+            fieldnames = emprestimo_no_arquivo[0].keys()  
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             writer.writeheader()
-            writer.writerows(emprestimo_no_arquivo)  # Escreve as pessoas restantes
+            writer.writerows(emprestimo_no_arquivo) 
 
-        print("Pessoa(s) removida(s) com sucesso!")
+        print("Emprestimo removido com sucesso!")
 #menu
 while True:
     print("------BIBLIOTECA------")
@@ -147,7 +139,6 @@ while True:
             if op == "1":
                 print("----CADASTRAR PESSOAS----")
 
-
             elif op == "2":
                 print("----IMPRIMIR PESSOAS----")
 
@@ -161,7 +152,7 @@ while True:
             elif op == "4":
                 print("----DELETAR PESSOA----")
                 pesquisa = input("Digite o nome que deseja excluir: ")
-                deletar_pessoa()
+                deletar_pessoa(deletar_pessoa, pessoas)
 
 
             elif op == "5":
@@ -261,7 +252,8 @@ while True:
 
 
             elif op == "5":
-                print("----DELETAR PESSOA----")
+                print("----DELETAR EMPRESTIMOS----")
+                deletar_emprestimo(emprestimos_csv, emprestimo)
 
 
 
