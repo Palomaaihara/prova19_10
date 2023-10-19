@@ -41,7 +41,7 @@ def deleter_pessoa(pessoas_csv, pessoas):
 
         # Remove as pessoas da lista em memória
         for i in reversed(pessoas_para_remover):
-            pessoas.remove(i)
+            pessoas.pop(i)
 
         # Abre o arquivo CSV para escrita e escreve as pessoas restantes
         with open(arquivo_pessoas_csv, 'w', newline='') as file:
