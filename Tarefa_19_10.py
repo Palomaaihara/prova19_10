@@ -10,7 +10,8 @@ import csv
 
 #ATUALIZAR PESSOA
 
-nome = input("Digite o nome: ")
+id = input("Digite o nome: ")
+
 for pessoa in pessoas:
     if nome == pessoa['NOME']:
         numero = input("numero: ")
