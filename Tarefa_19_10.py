@@ -44,13 +44,13 @@ def deleter_pessoa(pessoas_csv, pessoas):
             pessoas.pop(i)
 
         # Abre o arquivo CSV para escrita e escreve as pessoas restantes
-        with open(arquivo_pessoas_csv, 'w', newline='') as file:
+        with open(pessoas_csv, 'w', newline='') as file:
             fieldnames = pessoas_no_arquivo[0].keys()  # Obtém os cabeçalhos do CSV do arquivo
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(pessoas_no_arquivo)  # Escreve as pessoas restantes
 
-        print("Pessoa(s) removida(s) com sucesso do arquivo CSV e da lista!")
+        print("Pessoa(s) removida(s) com sucesso!")
 
 #menu
 while True:
