@@ -31,7 +31,12 @@ telefone = int(input("Ditegite o telefone: "))
 
 
 #IMPRIMIR PESSOAS
-
+def imp_pessoa(pessoas):
+	for i,cad_pessoa in enumerate(pessoas):
+		print("Número de cadastro da pessoa:",i)
+        print("NOME:", cad_pessoa['NOME'])
+        print("NUMERO:", cad_pessoa['NUMERO'])
+        print("EMAIL:", cad_pessoa['EMAIL'])
 
 #ATUALIZAR PESSOA
 
