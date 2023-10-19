@@ -21,7 +21,35 @@ for pessoa in pessoas:
                 if linha == nome:
 
 #DELETAR PESSOA
+def deleter_pessoa(pessoas_csv, pessoas):
+    pesquisa = input("Digite o nome que deseja excluir: ")
+    pessoas_para_remover = []
 
+    # Encontra o índice das pessoas a serem removidas na lista
+    for i, pessoa in enumerate(pessoas):
+        if pessoa['NOME'] == pesquisa:
+            pessoas_para_remover.append(i)
+
+    if not pessoas_para_remover:
+        print("Nome não encontrado na lista!")
+    else:
+        # Abre o arquivo CSV para leitura e escrita
+        with open(pessoas_csv, 'r') as file:
+            reader = csv.DictReader(file)
+            pessoas_no_arquivo = list(reader)
+
+        # Remove as pessoas da lista em memória
+        for i in reversed(pessoas_para_remover):
+            pessoas.remove(i)
+
+        # Abre o arquivo CSV para escrita e escreve as pessoas restantes
+        with open(arquivo_pessoas_csv, 'w', newline='') as file:
+            fieldnames = pessoas_no_arquivo[0].keys()  # Obtém os cabeçalhos do CSV do arquivo
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(pessoas_no_arquivo)  # Escreve as pessoas restantes
+
+        print("Pessoa(s) removida(s) com sucesso do arquivo CSV e da lista!")
 
 #menu
 while True:
