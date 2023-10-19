@@ -117,7 +117,7 @@ while True:
 
             elif op =="3":
                 print("----ATUALIZAR PESSOA----")
-
+ 		imp_pessoa(pessoas)
 
 
             elif op == "4":
