@@ -117,6 +117,37 @@ def deletar_emprestimo(emprestimos_csv, emprestimo):
             writer.writerows(emprestimo_no_arquivo) 
 
         print("Emprestimo removido com sucesso!")
+#DELETAR LIVRO
+def deletar_livros(livros_csv, livros):
+    pesquisa = input("Digite o livro que deseja excluir: ")
+    livro_para_remover = []
+
+    
+    for i, livro in enumerate(livros):
+        if livro['TITULO'] == pesquisa:
+            livro_para_remover.append(i)
+
+    if not livro_para_remover:
+        print("Livro não encontrado na lista!")
+    else:
+        
+        with open(livros_csv, 'r') as file:
+            reader = csv.DictReader(file)
+            livro_no_arquivo = list(reader)
+
+    
+        for i in reversed(livro_para_remover):
+            livros.pop(i)
+
+        
+        with open(livro_pessoas_csv, 'w', newline='') as file:
+            fieldnames = livro_no_arquivo[0].keys() 
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(livro_no_arquivo)  
+
+        print("Livro removido com sucesso!")
+
 #menu
 while True:
     print("------BIBLIOTECA------")
