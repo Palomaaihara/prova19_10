@@ -41,10 +41,17 @@ def imp_pessoa(pessoas):
         print("Email:", pessoa['EMAIL'])
         print("Telefone:", pessoa['TELEFONE'])
     
-with open('pessoas.csv', 'r', newline='') as pessoas_csv:
-        linhas = csv.reader(pessoas_csv)
-        for linha in linhas:
-            print(linha[0], linha[1], linha[2])
+with open('pessoas.csv', 'r', newline='') as pessoas_csv:  
+    linhas = csv.reader(pessoas)
+# Crie uma lista de dicionários com as informações das pessoas
+    pessoas = []
+    for linha in linhas:
+        pessoa = {
+            'NOME': linha[0],
+            'NUMERO': linha[1],
+            'EMAIL': linha[2]
+        }
+        pessoas.append(pessoa)
 #ATUALIZAR PESSOA
 
 id = input("Digite o nome: ")
@@ -202,10 +209,10 @@ while True:
 
             elif op =="3":
                 print("----ATUALIZAR PESSOA----")
- 		        imp_pessoa(pessoas_csv,pessoas)
+                imp_pessoa(pessoas_csv,pessoas)
 
 
-            elif op == "4":
+            elif op =="4":
                 print("----DELETAR PESSOA----")
                 pesquisa = input("Digite o nome que deseja excluir: ")
                 deletar_pessoa(pessoas_csv, pessoas)
