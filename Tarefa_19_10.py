@@ -148,6 +148,28 @@ def deletar_livros(livros_csv, livros):
 
         print("Livro removido com sucesso!")
 
+#IMPRIMIR_REGISTRO
+
+def imp_registro(emprestimos):
+	for i,emprestimo in enumerate(emprestimos):
+		print("Número do registro:",i)
+		print("NOME:",emprestimo['PESSOA'])
+		print("LIVRO:",emprestimo['LIVRO'])
+		print("DATA DO EMPRESTIMO:",emprestimo['DATA_EMP'])
+		print("DATA DE DEVOLUCAO",emprestimo['DATA_ENTREGA'])
+          
+#IMPRIMIR_ATRASADOS
+
+def imp_atrasados(emprestimos,data_entrega,pessoa,livro):
+	data = datetime.datetime.now()
+	for i,emprestimo in enumerate(emprestimos):
+		if data_entrega< data:
+			print("Número do registro:",i)
+			print("NOME:",emprestimo['PESSOA'])
+			print("LIVRO:",emprestimo['LIVRO'])
+			print("DATA DO EMPRESTIMO:",emprestimo['DATA_EMP'])
+			print("DATA DE DEVOLUCAO:",emprestimo['DATA_ENTREGA'])
+
 #menu
 while True:
     print("------BIBLIOTECA------")
@@ -186,7 +208,7 @@ while True:
             elif op == "4":
                 print("----DELETAR PESSOA----")
                 pesquisa = input("Digite o nome que deseja excluir: ")
-                deletar_pessoa(deletar_pessoa, pessoas)
+                deletar_pessoa(pessoas_csv, pessoas)
 
 
             elif op == "5":
@@ -232,7 +254,7 @@ while True:
 
             elif op == "4":
                 print("----DELETAR LIVRO ----")
-
+                deletar_livros(livros_csv, livros)
 
 
             elif op ==  "5": 
