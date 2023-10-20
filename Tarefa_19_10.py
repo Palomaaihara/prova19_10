@@ -202,7 +202,7 @@ while True:
 
             elif op =="3":
                 print("----ATUALIZAR PESSOA----")
- 		imp_pessoa(pessoas)
+ 		        imp_pessoa(pessoas_csv,pessoas)
 
 
             elif op == "4":
