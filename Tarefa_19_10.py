@@ -3,19 +3,14 @@ import csv
 
 
 #CADASTRAR PESSOAS
-def cadastrar_pessoa(pessoas,nome,email,telefone):
-    pessoa = {
-        'NOME': nome,
-        'EMAIL': email,
-        "TELEFONE": telefone
-    }
-    pessoas.apppend(pessoa)
-pessoas = []
 with open('pessoas.csv', mode='w', newline='') as pessoas_csv:
         writer = csv.writer(pessoas_csv)
         writer.writerow(["ID","Nome", "e-Mail", "Telefone"])
         for pessoa in pessoas:
             writer.writerow([pessoa,pessoa['NOME'], pessoa['EMAIL'], pessoa['TELEFONE']])
+
+
+#cadastra_livro
 
 def cadastrar_livro(livros,titulo,autor,editora):
     livro = {
@@ -58,7 +53,7 @@ for pessoa in pessoas:
     if nome == pessoa['NOME']:
         numero = input("numero: ")
         mail = input("Email: ")
-        with open('pessoas.cvs', 'r') as pessoas_cvs:
+        with open('pessoas.cvs', 'r') as pessoas_csv:
             leitor = csv.reader(pessoas_csv)
             for linha in linhas:
                 if linha == nome:
@@ -92,22 +87,89 @@ def deletar_pessoa(pessoas_csv, pessoas):
             writer.writerows(pessoas_no_arquivo)  # Escreve as pessoas restantes
 
         print("Pessoa(s) removida(s) com sucesso!")
+
 #DELETAR EMPRESTIMO
-def deleter_registro(emprestimos):
-    pesquisa = input("Digite o nome que deseja excluir: ")
-    emprestimos_para_remover = []
+def deletar_emprestimo(emprestimos_csv, emprestimo):
+    emprestimo_para_remover = []
 
-    for emprestimo in emprestimos:
+    
+    for i, emprestimo in enumerate(emprestimos):
         if emprestimo['EMPRESTIMO'] == pesquisa:
-            emprestimos_para_remover.append(emprestimo)
+            emprestimo_para_remover.append(i)
 
-    if not emprestimos_para_remover:
-        print("Nome não encontrado na lista!")
+    if not emprestimo_para_remover:
+        print("Emprestimo não encontrado na lista!")
     else:
-        for emprestimo in emprestimos_para_remover:
-            emprestimos.remove(emprestimo)
+        
+        with open(emprestimos_csv, 'r') as file:
+            reader = csv.DictReader(file)
+            emprestimo_no_arquivo = list(reader)
 
-        criar_csv() 
+        
+        for i in reversed(emprestimo_para_remover):
+            emprestimo.pop(i)
+
+       
+        with open(emprestimos_csv, 'w', newline='') as file:
+            fieldnames = emprestimo_no_arquivo[0].keys()  
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(emprestimo_no_arquivo) 
+
+        print("Emprestimo removido com sucesso!")
+#DELETAR LIVRO
+def deletar_livros(livros_csv, livros):
+    pesquisa = input("Digite o livro que deseja excluir: ")
+    livro_para_remover = []
+
+    
+    for i, livro in enumerate(livros):
+        if livro['TITULO'] == pesquisa:
+            livro_para_remover.append(i)
+
+    if not livro_para_remover:
+        print("Livro não encontrado na lista!")
+    else:
+        
+        with open(livros_csv, 'r') as file:
+            reader = csv.DictReader(file)
+            livro_no_arquivo = list(reader)
+
+    
+        for i in reversed(livro_para_remover):
+            livros.pop(i)
+
+        
+        with open(livro_pessoas_csv, 'w', newline='') as file:
+            fieldnames = livro_no_arquivo[0].keys() 
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(livro_no_arquivo)  
+
+        print("Livro removido com sucesso!")
+
+#IMPRIMIR_REGISTRO
+
+def imp_registro(emprestimos):
+	for i,emprestimo in enumerate(emprestimos):
+		print("Número do registro:",i)
+		print("NOME:",emprestimo['PESSOA'])
+		print("LIVRO:",emprestimo['LIVRO'])
+		print("DATA DO EMPRESTIMO:",emprestimo['DATA_EMP'])
+		print("DATA DE DEVOLUCAO",emprestimo['DATA_ENTREGA'])
+          
+#IMPRIMIR_ATRASADOS
+
+def imp_atrasados(emprestimos,data_entrega,pessoa,livro):
+	data = datetime.datetime.now()
+	for i,emprestimo in enumerate(emprestimos):
+		if data_entrega< data:
+			print("Número do registro:",i)
+			print("NOME:",emprestimo['PESSOA'])
+			print("LIVRO:",emprestimo['LIVRO'])
+			print("DATA DO EMPRESTIMO:",emprestimo['DATA_EMP'])
+			print("DATA DE DEVOLUCAO:",emprestimo['DATA_ENTREGA'])
+
 #menu
 while True:
     print("------BIBLIOTECA------")
@@ -132,10 +194,6 @@ while True:
 
             if op == "1":
                 print("----CADASTRAR PESSOAS----")
-                nome = str(input("Digite o nome da pessoa: "))
-	    	    email = str(input("Digite o e-mail da pessoa: "))
-	    	    telefone = str(input("Digitebo o telefone da pessoa: "))
-                cadastrar_pessoa(Pessoas,nome,email,telefone)
 
             elif op == "2":
                 print("----IMPRIMIR PESSOAS----")
@@ -144,13 +202,13 @@ while True:
 
             elif op =="3":
                 print("----ATUALIZAR PESSOA----")
- 		imp_pessoa(pessoas)
+ 		        imp_pessoa(pessoas_csv,pessoas)
 
 
             elif op == "4":
                 print("----DELETAR PESSOA----")
                 pesquisa = input("Digite o nome que deseja excluir: ")
-                deletar_pessoa()
+                deletar_pessoa(pessoas_csv, pessoas)
 
 
             elif op == "5":
@@ -199,7 +257,7 @@ while True:
 
             elif op == "4":
                 print("----DELETAR LIVRO ----")
-
+                deletar_livros(livros_csv, livros)
 
 
             elif op ==  "5": 
@@ -253,7 +311,8 @@ while True:
 
 
             elif op == "5":
-                print("----DELETAR PESSOA----")
+                print("----DELETAR EMPRESTIMOS----")
+                deletar_emprestimo(emprestimos_csv, emprestimo)
 
 
 
