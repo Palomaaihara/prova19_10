@@ -205,7 +205,7 @@ while True:
  		        imp_pessoa(pessoas_csv,pessoas)
 
 
-            elif op == "4":
+            elif op =="4":
                 print("----DELETAR PESSOA----")
                 pesquisa = input("Digite o nome que deseja excluir: ")
                 deletar_pessoa(pessoas_csv, pessoas)
