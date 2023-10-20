@@ -35,11 +35,11 @@ telefone = int(input("Ditegite o telefone: "))
 
 #IMPRIMIR PESSOAS
 def imp_pessoa(pessoas):
-    for i,cad_pessoa in enumerate(pessoas):
+    for i,pessoa in enumerate(pessoas):
 	    print("Número de cadastro da pessoa:",i)
-        print("NOME:", cad_pessoa['NOME'])
-        print("NUMERO:", cad_pessoa['NUMERO'])
-        print("EMAIL:", cad_pessoa['EMAIL'])
+        print("Nome:", pessoa['NOME'])
+        print("Email:", pessoa['EMAIL'])
+        print("Telefone:", pessoa['TELEFONE'])
     
     with open('pessoas.csv', 'r', newline='') as pessoas_csv:  
         linhas = csv.reader(pessoas)
@@ -245,7 +245,10 @@ while True:
 
             if op == "1":
                 print("----CADASTRAR LIVRO ----")
-
+                titulo = str(input("Digite o título do livro: "))
+	    	    autor = str(input("Digite o nome do autor do livro: "))
+	    	    editora = str(input("Digitebo nome da editora do livro: "))
+                cadastrar_livro(livros,titulo,autor,editora)
 
 
             elif op == "2":
