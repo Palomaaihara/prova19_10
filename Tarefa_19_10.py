@@ -53,7 +53,7 @@ for pessoa in pessoas:
     if nome == pessoa['NOME']:
         numero = input("numero: ")
         mail = input("Email: ")
-        with open('pessoas.cvs', 'r') as pessoas_cvs:
+        with open('pessoas.cvs', 'r') as pessoas_csv:
             leitor = csv.reader(pessoas_csv)
             for linha in linhas:
                 if linha == nome:
