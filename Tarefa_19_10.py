@@ -41,10 +41,17 @@ def imp_pessoa(pessoas):
         print("NUMERO:", cad_pessoa['NUMERO'])
         print("EMAIL:", cad_pessoa['EMAIL'])
     
-with open('pessoas.csv', 'r', newline='') as pessoas_csv:
-        linhas = csv.reader(pessoas_csv)
-        for linha in linhas:
-            print(linha[0], linha[1], linha[2])
+with open('pessoas.csv', 'r', newline='') as pessoas_csv:  
+    linhas = csv.reader(pessoas)
+# Crie uma lista de dicionários com as informações das pessoas
+    pessoas = []
+    for linha in linhas:
+        pessoa = {
+            'NOME': linha[0],
+            'NUMERO': linha[1],
+            'EMAIL': linha[2]
+        }
+        pessoas.append(pessoa)
 #ATUALIZAR PESSOA
 
 id = input("Digite o nome: ")
