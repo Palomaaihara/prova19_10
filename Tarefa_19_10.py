@@ -41,29 +41,29 @@ def imp_pessoa(pessoas):
         print("NUMERO:", cad_pessoa['NUMERO'])
         print("EMAIL:", cad_pessoa['EMAIL'])
     
-with open('pessoas.csv', 'r', newline='') as pessoas_csv:  
-    linhas = csv.reader(pessoas)
-# Crie uma lista de dicionários com as informações das pessoas
-    pessoas = []
-    for linha in linhas:
-        pessoa = {
-            'NOME': linha[0],
-            'NUMERO': linha[1],
-            'EMAIL': linha[2]
-        }
-        pessoas.append(pessoa)
-#ATUALIZAR PESSOA
+    with open('pessoas.csv', 'r', newline='') as pessoas_csv:  
+        linhas = csv.reader(pessoas)
+    # Crie uma lista de dicionários com as informações das pessoas
+        pessoas = []
+        for linha in linhas:
+            pessoa = {
+                'NOME': linha[0],
+                'NUMERO': linha[1],
+                'EMAIL': linha[2]
+            }
+            pessoas.append(pessoa)
+    #ATUALIZAR PESSOA
+def atualizar_pessoa(pessoas):
+    id = input("Digite o nome: ")
 
-id = input("Digite o nome: ")
-
-for pessoa in pessoas:
-    if nome == pessoa['NOME']:
-        numero = input("numero: ")
-        mail = input("Email: ")
-        with open('pessoas.cvs', 'r') as pessoas_csv:
-            leitor = csv.reader(pessoas_csv)
-            for linha in linhas:
-                if linha == nome:
+    for pessoa in pessoas:
+        if nome == pessoa['NOME']:
+            numero = input("numero: ")
+            mail = input("Email: ")
+            with open('pessoas.cvs', 'r') as pessoas_csv:
+                leitor = csv.reader(pessoas_csv)
+                for linha in linhas:
+                    if linha == nome:
 
 #DELETAR PESSOA
 def deletar_pessoa(pessoas_csv, pessoas):
