@@ -4,6 +4,17 @@ import datetime
 
 
 #CADASTRAR PESSOAS
+<<<<<<< Updated upstream
+=======
+def cadastrar_pessoa(Pessoas,nome,email,telefone):
+    pessoa = {
+        'NOME': nome,
+        'EMAIL': email,
+        "TELEFONE": telefone
+    }
+    pessoas.append(pessoa)
+pessoas = []
+>>>>>>> Stashed changes
 with open('pessoas.csv', mode='w', newline='') as pessoas_csv:
         writer = csv.writer(pessoas_csv)
         writer.writerow(["ID","Nome", "e-Mail", "Telefone"])
@@ -57,6 +68,7 @@ def imp_pessoa(pessoas):
 def atualizar_pessoa(pessoas):
     id = input("Digite o nome: ")
 
+<<<<<<< Updated upstream
     for pessoa in pessoas:
         if nome == pessoa['NOME']:
             numero = input("numero: ")
@@ -65,8 +77,21 @@ def atualizar_pessoa(pessoas):
                 leitor = csv.reader(pessoas_csv)
                 for linha in linhas:
                     if linha == nome:
+=======
+id = input("Digite o nome: ")
+
+    for pessoa in pessoas:
+        if nome == pessoa['NOME']:
+         numero = input("numero: ")
+        mail = input("Email: ")
+        with open('pessoas.cvs', 'r') as pessoas_cvs:
+            leitor = csv.reader(pessoas_csv)
+            for linha in linhas:
+                if linha == nome:
+>>>>>>> Stashed changes
 
 #DELETAR PESSOA
+
 def deletar_pessoa(pessoas_csv, pessoas):
     pessoas_para_remover = []
 
@@ -210,8 +235,12 @@ while True:
 
             elif op =="3":
                 print("----ATUALIZAR PESSOA----")
+<<<<<<< Updated upstream
                 imp_pessoa(pessoas_csv,pessoas)
 
+=======
+ 		        imp_pessoa(pessoas)
+>>>>>>> Stashed changes
 
             elif op =="4":
                 print("----DELETAR PESSOA----")
